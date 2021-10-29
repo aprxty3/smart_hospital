@@ -9,9 +9,10 @@ $dbname = "smart-hospital";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    //set PDO error mode ke exception
+    // set PDO error mode ke exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //menyiapkan sql dan menyambungkan parameter
+  
+    // menyiapkan sql dan menyambungkan parameter
 } catch (PDOException $e){
     echo "Error : ".$e->getMessage();
 }
