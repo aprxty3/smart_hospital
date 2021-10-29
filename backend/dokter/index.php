@@ -3,8 +3,9 @@ include '../db.php';
 
 $nama = $_GET['nama'] ?? null;
 $query = "SELECT * FROM dokter";
-if ($nama!=null) {
-    $query = $query." WHERE nama LIKE '%$nama%'";
+
+if ($nama!=null){
+    $query = $query."  WHERE nama LIKE '%$nama%'";
 }
 
 $sql = $conn->query($query);
