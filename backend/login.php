@@ -10,13 +10,14 @@ $query_user = "SELECT * FROM user WHERE username = '$username' AND password = '$
 $sql = $conn->query($query_user);
 $result = $sql->fetch(PDO::FETCH_ASSOC);
 $response=null;
-
-if ($result!=false) {
+if ($result!=false){
     $id_pasien = $result['id_pasien'];
-    $query_pasien = "SELECT * FROM pasen WHERE id_pasien = '$id_pasien'";
+
+    $query_pasien = "SELECT * FROM pasien WHERE id_pasien = '$id_pasien'";
     $result_pasien = $conn->query($query_pasien)->fetch(PDO::FETCH_ASSOC);
-    $result_pasien = ($result_pasien!=false) ? $result_pasien: null;
-    $response['message'] = "Selamat datang ".$result['username'];
+    $result_pasien = ($result_pasien!=false) ? $result_pasien : null;
+
+    $response['message'] = "Selamat data ".$result['username'];
     $response['user'] = $result;
     $response['user']['id_pasien'] = $result_pasien;
 } else {
