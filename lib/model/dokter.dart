@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'dart:convert';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import 'package:smart-hospital/util/config.dart';
 
@@ -18,3 +20,13 @@ List<Dokter> dokterFromJson(jsonData) {
 }
 
 //index
+Future<List<Dokter>> fetchDokter() async {
+  String route = AppConfig.API_ENDPOINT + "dokter/index.php";
+  final response = await http.get(route);
+  if (response.statusCode == 200) {
+    var jsonResp = jsonDecode(response.body);
+    return dokterFromJson(jsonResp);
+  } else {
+    throw Exception('Failed load $route, status : ${response.statusCode}');
+  }
+}
