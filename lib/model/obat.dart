@@ -6,6 +6,7 @@ class Obat {
   final String idObat, nama, harga, satuan;
   bool isSelected;
   int jumlah;
+
   Obat(
       {this.idObat,
       this.nama,
@@ -13,23 +14,28 @@ class Obat {
       this.satuan,
       this.isSelected = false,
       this.jumlah = 1});
+
   factory Obat.fromJson(Map<String, dynamic> json) {
     return Obat(
         idObat: json['id_obat'],
         nama: json['nama'],
-        harga: ['harga'],
-        satuan: ['satuan']);
+        harga: json['harga'],
+        satuan: json['satuan']);
   }
 }
 
 List<Obat> obatFromJson(jsonData) {
-  List<Obat>.from(jsonData.map((item) => Obat.fromJson(item)));
+  List<Obat> result =
+      List<Obat>.from(jsonData.map((item) => Obat.fromJson(item)));
+
   return result;
 }
 
-//index
+// index
 Future<List<Obat>> fetchObats() async {
   String route = AppConfig.API_ENDPOINT + "obat/index.php";
+  final response = await http.get(route);
+
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
     return obatFromJson(jsonResp);
