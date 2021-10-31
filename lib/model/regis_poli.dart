@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_hospital/util/config.dart';
 import 'package:smart_hospital/util/session.dart';
@@ -50,3 +51,34 @@ Future<List<RegisPoli>> fetchRegisPolis() async {
 }
 
 //create (POST)
+Future regisPoliCreate(RegisPoli regisPoli) async {
+  final prefs = await SharedPreferences.getInstance();
+  String route = AppConfig.API_ENDPOINT + "regis-poli/create.php";
+  try {
+    final response = await http.post(route,
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          'id_pasien': prefs.getString(ID_PASIEN),
+          'id_dokter': regisPoli.idDokter.idDokter,
+          'tgl_booking': regisPoli.tglBooking,
+          'poli': regisPoli.poli
+        }));
+    return response;
+  } catch (e) {
+    print("Error : ${e.toString()}");
+    return null;
+  }
+}
+
+// delete (GET)
+Future deleteRegisPoli(id) async {
+  String route = AppConfig.API_ENDPOINT + "regis-poli/delete.php?id=$id";
+  final response = await http.get(route);
+
+  if (response.statusCode == 200) {
+    var jsonResp = json.decode(response.body);
+    return jsonResp['message'];
+  } else {
+    return response.body.toString();
+  }
+}
