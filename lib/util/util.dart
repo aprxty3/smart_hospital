@@ -43,20 +43,21 @@ String toRupiah(int val) {
   return NumberFormat.currency(locale: 'IDR').format(val);
 }
 
-void logOut(BuildContext context){
-  clearSession().then((value) => Navigator.pushAndRemoveUntil(context,
-  PageRouteBuilder(pageBuilder: (BuildContext context), 
-  Animation animation,
-  Animation secondaryAnimation){
-    return LoginPage();
-  }, TransitionBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation,
-  Widget child){
-    return new SlideTransition(position: new Tween<Offset>(
-      begin: const Offset(1.0, 0.0),
-      end: Offset.zero,).animate(animation),
-      child: child,
-    );
-  }
-  ),
-  (route)=>false));
+void logOut(BuildContext context) {
+  clearSession().then((value) => Navigator.pushAndRemoveUntil(
+      context,
+      PageRouteBuilder(pageBuilder: (BuildContext context, Animation animation,
+          Animation secondaryAnimation) {
+        return LoginPage();
+      }, transitionsBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation, Widget child) {
+        return new SlideTransition(
+          position: new Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        );
+      }),
+      (route) => false));
 }
