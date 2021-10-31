@@ -54,3 +54,9 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
+  Future _loadSession() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs;
+  }
+}
