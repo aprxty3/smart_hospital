@@ -23,8 +23,7 @@ class _MyAppState extends State<MyApp> {
       home: FutureBuilder(
         future: _loadSession(),
         builder: (context, snapshot) {
-          final SharedPreferences prefs = snapshot.data;
-          Widget result;
+          late Widget result;
           if (snapshot.connectionState == ConnectionState.waiting) {
             result = Scaffold(
               body: Center(
@@ -32,6 +31,7 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
+            final SharedPreferences prefs = snapshot.data as SharedPreferences;
             if (snapshot.hasData) {
               if (prefs.getBool(IS_LOGIN) ?? false) {
                 if (prefs.getString(JENIS_LOGIN) ==

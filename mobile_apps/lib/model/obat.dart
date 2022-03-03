@@ -8,10 +8,10 @@ class Obat {
   int jumlah;
 
   Obat(
-      {this.idObat,
-      this.nama,
-      this.harga,
-      this.satuan,
+      {required this.idObat,
+      required this.nama,
+      required this.harga,
+      required this.satuan,
       this.isSelected = false,
       this.jumlah = 1});
 
@@ -34,7 +34,7 @@ List<Obat> obatFromJson(jsonData) {
 // index
 Future<List<Obat>> fetchObats() async {
   String route = AppConfig.API_ENDPOINT + "obat/index.php";
-  final response = await http.get(route);
+  final response = await http.get(Uri.parse(route));
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
