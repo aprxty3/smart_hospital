@@ -1,22 +1,23 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_hospital/util/config.dart';
-import 'package:smart_hospital/util/session.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_hospital/util/session.dart';
 import 'pasien.dart';
 import 'dokter.dart';
 
 class RegisPoli {
-  final String idRegisPoli, tglBooking, poli;
+  final String tglBooking, poli;
+  final String? idRegisPoli;
   final Pasien idPasien;
   final Dokter idDokter;
+
   RegisPoli(
       {this.idRegisPoli,
-      this.idPasien,
-      this.idDokter,
-      this.tglBooking,
-      this.poli});
+      required this.idPasien,
+      required this.idDokter,
+      required this.tglBooking,
+      required this.poli});
 
   factory RegisPoli.fromJson(Map<String, dynamic> json) {
     return RegisPoli(
@@ -31,16 +32,17 @@ class RegisPoli {
 List<RegisPoli> regisPoliFromJson(jsonData) {
   List<RegisPoli> result =
       List<RegisPoli>.from(jsonData.map((item) => RegisPoli.fromJson(item)));
+
   return result;
 }
 
-//index (POST)
+// index (GET)
 Future<List<RegisPoli>> fetchRegisPolis() async {
   final prefs = await SharedPreferences.getInstance();
   String idPasien = prefs.getString(ID_PASIEN) ?? "";
   String route =
       AppConfig.API_ENDPOINT + "regis-poli/index.php?id_pasien=$idPasien";
-  final response = await http.get(route);
+  final response = await http.get(Uri.parse(route));
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
@@ -50,12 +52,12 @@ Future<List<RegisPoli>> fetchRegisPolis() async {
   }
 }
 
-//create (POST)
+// create (POST)
 Future regisPoliCreate(RegisPoli regisPoli) async {
   final prefs = await SharedPreferences.getInstance();
   String route = AppConfig.API_ENDPOINT + "regis-poli/create.php";
   try {
-    final response = await http.post(route,
+    final response = await http.post(Uri.parse(route),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           'id_pasien': prefs.getString(ID_PASIEN),
@@ -63,6 +65,7 @@ Future regisPoliCreate(RegisPoli regisPoli) async {
           'tgl_booking': regisPoli.tglBooking,
           'poli': regisPoli.poli
         }));
+
     return response;
   } catch (e) {
     print("Error : ${e.toString()}");
@@ -73,7 +76,7 @@ Future regisPoliCreate(RegisPoli regisPoli) async {
 // delete (GET)
 Future deleteRegisPoli(id) async {
   String route = AppConfig.API_ENDPOINT + "regis-poli/delete.php?id=$id";
-  final response = await http.get(route);
+  final response = await http.get(Uri.parse(route));
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);

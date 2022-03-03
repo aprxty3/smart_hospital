@@ -1,32 +1,29 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_hospital/util/config.dart';
 import 'package:smart_hospital/util/session.dart';
 import 'pasien.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PesanObat {
-  final String idPesanObat,
-      waktu,
-      alamat,
-      lat,
-      lng,
-      listPesanan,
-      totalBiaya,
-      ket;
-  bool isSelesai;
-  final Pasien idPasien;
+  final String alamat, lat, lng, listPesanan, totalBiaya, ket;
+
+  bool? isSelesai;
+
+  final String? idPesanObat, waktu;
+
+  final Pasien? idPasien;
 
   PesanObat(
       {this.idPesanObat,
       this.idPasien,
       this.waktu,
-      this.alamat,
-      this.lat,
-      this.lng,
-      this.listPesanan,
-      this.totalBiaya,
-      this.ket,
+      required this.alamat,
+      required this.lat,
+      required this.lng,
+      required this.listPesanan,
+      required this.totalBiaya,
+      required this.ket,
       this.isSelesai});
 
   factory PesanObat.fromJson(Map<String, dynamic> json) {
@@ -47,18 +44,19 @@ class PesanObat {
 List<PesanObat> pesanObatFromJson(jsonData) {
   List<PesanObat> result =
       List<PesanObat>.from(jsonData.map((item) => PesanObat.fromJson(item)));
+
   return result;
 }
 
-//index
-
+// index
 Future<List<PesanObat>> fetchPesanObats({isSelesai}) async {
   isSelesai = isSelesai ?? "";
   final prefs = await SharedPreferences.getInstance();
   String idPasien = prefs.getString(ID_PASIEN) ?? "";
   String route = AppConfig.API_ENDPOINT +
       "pesan-obat/index.php?id_pasien=$idPasien&is_selesai=$isSelesai";
-  final response = await http.get(route);
+
+  final response = await http.get(Uri.parse(route));
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
@@ -68,13 +66,12 @@ Future<List<PesanObat>> fetchPesanObats({isSelesai}) async {
   }
 }
 
-//Create (Post)
-
-Future PesanObatCreate(PesanObat pesanObat) async {
+// create (POST)
+Future pesanObatCreate(PesanObat pesanObat) async {
   final prefs = await SharedPreferences.getInstance();
   String route = AppConfig.API_ENDPOINT + "pesan-obat/create.php";
   try {
-    final response = await http.post(route,
+    final response = await http.post(Uri.parse(route),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           'id_pasien': prefs.getString(ID_PASIEN),
@@ -85,6 +82,7 @@ Future PesanObatCreate(PesanObat pesanObat) async {
           'total_biaya': pesanObat.totalBiaya,
           'ket': pesanObat.ket
         }));
+
     return response;
   } catch (e) {
     print("Error : ${e.toString()}");
@@ -92,10 +90,10 @@ Future PesanObatCreate(PesanObat pesanObat) async {
   }
 }
 
-//delete (GET)
+// delete (GET)
 Future deletePesanObat(id) async {
   String route = AppConfig.API_ENDPOINT + "pesan-obat/delete.php?id=$id";
-  final response = await http.get(route);
+  final response = await http.get(Uri.parse(route));
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
@@ -105,10 +103,10 @@ Future deletePesanObat(id) async {
   }
 }
 
-//update (GET)
+// update (GET)
 Future updatePesanObat(id) async {
   String route = AppConfig.API_ENDPOINT + "pesan-obat/update.php?id=$id";
-  final response = await http.get(route);
+  final response = await http.get(Uri.parse(route));
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
