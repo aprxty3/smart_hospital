@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: InputDecoration(
                   icon: Icon(Icons.person), hintText: 'Nama Lengkap'),
               validator: (value) {
-                if (value.isEmpty) {
+                if (value != null && value.isEmpty) {
                   return 'Tidak boleh kosong';
                 }
                 return null;
@@ -73,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: InputDecoration(
                   icon: Icon(Icons.phone_android), hintText: 'Nomor HP'),
               validator: (value) {
-                if (value.isEmpty) {
+                if (value != null && value.isEmpty) {
                   return 'Tidak boleh kosong';
                 }
                 return null;
@@ -89,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 width: double.infinity,
                 child: largetButton(
                     label: 'REGISTRASI PASIEN',
-                    onPressed: () async => (_formKey.currentState.validate())
+                    onPressed: () async => (_formKey.currentState!.validate())
                         ? prosesRegistrasi()
                         : null)),
             SizedBox(height: 20),
@@ -102,8 +102,8 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void prosesRegistrasi() async {
-    final response = await pasienCreate(Pasien(
-        nama: namaCont.text, hp: hpCont.text, email: emailCont.text ?? ""));
+    final response = await pasienCreate(
+        Pasien(nama: namaCont.text, hp: hpCont.text, email: emailCont.text));
 
     if (response != null) {
       print(response.body.toString());
