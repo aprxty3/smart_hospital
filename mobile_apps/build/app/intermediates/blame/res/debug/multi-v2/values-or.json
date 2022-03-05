@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart_hospital/mobile_apps/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-or/values-or.xml",
+            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart-hospital/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-or/values-or.xml",
             "map": [
                 {
-                    "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/d31be0547c32b9992c6d9a3ed20a2431/play-services-base-17.0.0/res/values-or/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,354,547,678,793,1008,1142,1283,1418,1645,1756,1948,2080,2291,2475,2566,2664",
-                        "endColumns": "108,192,130,114,214,133,140,134,226,110,191,131,210,183,90,97,111",
-                        "endOffsets": "353,546,677,792,1007,1141,1282,1417,1644,1755,1947,2079,2290,2474,2565,2663,2775"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,218,411,546,665,880,1018,1163,1501,1728,1843,2035,2171,2382,2570,2665,2767",
-                        "endColumns": "112,192,134,118,214,137,144,138,226,114,191,135,210,187,94,101,115",
-                        "endOffsets": "213,406,541,660,875,1013,1158,1297,1723,1838,2030,2166,2377,2565,2660,2762,2878"
-                    }
-                },
-                {
-                    "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/cb819d2e68d445b89be4cba8756f6164/core-1.6.0/res/values-or/values-or.xml",
+                    "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/res/values-or/values-or.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/3fae30b8c7011560757824052a8c7b0a/jetified-play-services-basement-17.0.0/res/values-or/values.xml",
+                    "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/5ac9ad6f13ea0190a3570ea7a43d9f59/play-services-base-17.0.0/res/values-or/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,354,547,678,793,1008,1142,1283,1418,1645,1756,1948,2080,2291,2475,2566,2664",
+                        "endColumns": "108,192,130,114,214,133,140,134,226,110,191,131,210,183,90,97,111",
+                        "endOffsets": "353,546,677,792,1007,1141,1282,1417,1644,1755,1947,2079,2290,2474,2565,2663,2775"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,218,411,546,665,880,1018,1163,1501,1728,1843,2035,2171,2382,2570,2665,2767",
+                        "endColumns": "112,192,134,118,214,137,144,138,226,114,191,135,210,187,94,101,115",
+                        "endOffsets": "213,406,541,660,875,1013,1158,1297,1723,1838,2030,2166,2377,2565,2660,2762,2878"
+                    }
+                },
+                {
+                    "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f2e02f173c981dcaa90ae0a3049b18bd/jetified-play-services-basement-17.0.0/res/values-or/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
