@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:smart_hospital/page/login.dart';
 import 'package:smart_hospital/util/session.dart';
 
-Dialog(_context, msg, {title}) {
+dialog(_context, msg, {title}) {
   showDialog(
     context: _context,
     builder: (BuildContext context) {
@@ -15,15 +15,16 @@ Dialog(_context, msg, {title}) {
   );
 }
 
-//Template button lebar untuk posisi bottomNavigator
+// Template button lebar utk posisi bottomNavigationBar
 Widget largetButton(
-    {String label = "Simpan", IconData iconData, Function onPressed}) {
+    {String label = "Simpan",
+    IconData? iconData,
+    required Function() onPressed}) {
   iconData = iconData ?? Icons.done_all;
   return Container(
     height: 60,
     width: double.infinity,
-    child: new RaisedButton.icon(
-        disabledColor: Colors.grey,
+    child: new ElevatedButton.icon(
         label: Text(
           label,
           style: TextStyle(
@@ -31,14 +32,12 @@ Widget largetButton(
             fontSize: 16.0,
           ),
         ),
-        elevation: 4.0,
         icon: Icon(iconData, color: Colors.white),
-        color: Colors.blue,
         onPressed: onPressed),
   );
 }
 
-//fungsi format tulisan rupiah
+// fungsi format tulisan rupiah
 String toRupiah(int val) {
   return NumberFormat.currency(locale: 'IDR').format(val);
 }
