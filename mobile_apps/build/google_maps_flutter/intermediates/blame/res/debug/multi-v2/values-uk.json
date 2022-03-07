@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart-hospital/build/google_maps_flutter/intermediates/res/merged/debug/values-uk/values-uk.xml",
+            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart_hospital/mobile_apps/build/google_maps_flutter/intermediates/res/merged/debug/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f2e02f173c981dcaa90ae0a3049b18bd/jetified-play-services-basement-17.0.0/res/values-uk/values.xml",
@@ -57,7 +57,7 @@
             ]
         },
         {
-            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart-hospital/build/google_maps_flutter/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
+            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart_hospital/mobile_apps/build/google_maps_flutter/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f2e02f173c981dcaa90ae0a3049b18bd/jetified-play-services-basement-17.0.0/res/values-uk/values.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart-hospital/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-hr/values-hr.xml",
+            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart_hospital/mobile_apps/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-hr/values-hr.xml",
             "map": [
                 {
                     "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f2e02f173c981dcaa90ae0a3049b18bd/jetified-play-services-basement-17.0.0/res/values-hr/values.xml",

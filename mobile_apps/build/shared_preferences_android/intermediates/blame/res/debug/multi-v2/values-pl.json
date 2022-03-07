@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart-hospital/build/shared_preferences_android/intermediates/incremental/mergeDebugResources/merged.dir/values-pl/values-pl.xml",
+            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart_hospital/mobile_apps/build/shared_preferences_android/intermediates/incremental/mergeDebugResources/merged.dir/values-pl/values-pl.xml",
             "map": [
                 {
                     "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/res/values-pl/values-pl.xml",
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart-hospital/build/shared_preferences_android/intermediates/res/merged/debug/values-pl/values-pl.xml",
+            "outputFile": "/Users/dwiajiprasetyo/personal_project/smart_hospital/mobile_apps/build/shared_preferences_android/intermediates/res/merged/debug/values-pl/values-pl.xml",
             "map": [
                 {
                     "source": "/Users/dwiajiprasetyo/.gradle/caches/transforms-2/files-2.1/f90299ff420036e311b84c728802cd71/core-1.6.0/res/values-pl/values-pl.xml",
