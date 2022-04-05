@@ -13,10 +13,10 @@ enum jenisLogin { PASIEN, PEGAWAI }
 Future createPasienSession(Pasien pasien) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setBool(IS_LOGIN, true);
-  prefs.setString(ID_PASIEN, pasien.idPasien!);
-  prefs.setString(NAMA, pasien.nama!);
-  prefs.setString(HP, pasien.hp!);
-  prefs.setString(EMAIL, pasien.email!);
+  prefs.setString(ID_PASIEN, pasien.idPasien);
+  prefs.setString(NAMA, pasien.nama);
+  prefs.setString(HP, pasien.hp);
+  prefs.setString(EMAIL, pasien.email);
   prefs.setString(JENIS_LOGIN, jenisLogin.PASIEN.toString());
   return true;
 }

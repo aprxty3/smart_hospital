@@ -9,7 +9,7 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-  late Future<List<PesanObat>> pesanObats;
+  Future<List<PesanObat>> pesanObats;
 
   @override
   void initState() {
@@ -46,8 +46,7 @@ class _IndexPageState extends State<IndexPage> {
                 result = Text('${snapshot.error}');
               } else if (snapshot.hasData) {
                 result = PesanObatPegawaiList(
-                    parentAction: _reloadData,
-                    pesanObats: snapshot.data as List<PesanObat>);
+                    parentAction: _reloadData, pesanObats: snapshot.data);
               } else {
                 result = CircularProgressIndicator();
               }

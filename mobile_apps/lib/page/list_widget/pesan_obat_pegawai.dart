@@ -6,7 +6,7 @@ import 'package:smart_hospital/util/util.dart';
 class PesanObatPegawaiList extends StatefulWidget {
   final List<PesanObat> pesanObats;
   final Function parentAction;
-  PesanObatPegawaiList({required this.parentAction, required this.pesanObats});
+  PesanObatPegawaiList({this.parentAction, this.pesanObats});
 
   @override
   _PesanObatPegawaiListState createState() => _PesanObatPegawaiListState();
@@ -17,7 +17,8 @@ class _PesanObatPegawaiListState extends State<PesanObatPegawaiList> {
   Widget build(BuildContext context) {
     return (widget.pesanObats.length != 0)
         ? ListView.builder(
-            itemCount: (widget.pesanObats.length),
+            itemCount:
+                (widget.pesanObats == null ? 0 : widget.pesanObats.length),
             itemBuilder: (context, i) {
               return Container(
                 child: GestureDetector(
@@ -30,8 +31,7 @@ class _PesanObatPegawaiListState extends State<PesanObatPegawaiList> {
                         ListTile(
                           leading: Icon(Icons.local_hospital),
                           isThreeLine: true,
-                          title: Text(
-                              "${widget.pesanObats[i].idPasien?.nama ?? '-'}"),
+                          title: Text("${widget.pesanObats[i].idPasien.nama}"),
                           subtitle: Text(
                               "${widget.pesanObats[i].listPesanan} \n${widget.pesanObats[i].alamat} \n${widget.pesanObats[i].ket}"),
                           trailing: Text(toRupiah(
@@ -39,7 +39,7 @@ class _PesanObatPegawaiListState extends State<PesanObatPegawaiList> {
                         ),
                         ButtonBar(
                           children: <Widget>[
-                            TextButton(
+                            FlatButton(
                                 onPressed: () async {
                                   final result = await Navigator.of(context)
                                       .push(MaterialPageRoute(

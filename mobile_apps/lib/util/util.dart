@@ -17,14 +17,13 @@ dialog(_context, msg, {title}) {
 
 // Template button lebar utk posisi bottomNavigationBar
 Widget largetButton(
-    {String label = "Simpan",
-    IconData? iconData,
-    required Function() onPressed}) {
+    {String label = "Simpan", IconData iconData, Function onPressed}) {
   iconData = iconData ?? Icons.done_all;
   return Container(
     height: 60,
     width: double.infinity,
-    child: new ElevatedButton.icon(
+    child: new RaisedButton.icon(
+        disabledColor: Colors.grey,
         label: Text(
           label,
           style: TextStyle(
@@ -32,7 +31,9 @@ Widget largetButton(
             fontSize: 16.0,
           ),
         ),
+        elevation: 4.0,
         icon: Icon(iconData, color: Colors.white),
+        color: Colors.blue,
         onPressed: onPressed),
   );
 }

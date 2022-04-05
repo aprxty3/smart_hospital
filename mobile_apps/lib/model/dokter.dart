@@ -5,7 +5,7 @@ import 'package:smart_hospital/util/config.dart';
 class Dokter {
   final String idDokter, nama, hp;
 
-  Dokter({required this.idDokter, required this.nama, required this.hp});
+  Dokter({this.idDokter, this.nama, this.hp});
 
   factory Dokter.fromJson(Map<String, dynamic> json) {
     return Dokter(
@@ -23,7 +23,7 @@ List<Dokter> dokterFromJson(jsonData) {
 // index
 Future<List<Dokter>> fetchDokters() async {
   String route = AppConfig.API_ENDPOINT + "dokter/index.php";
-  final response = await http.get(Uri.parse(route));
+  final response = await http.get(route);
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);

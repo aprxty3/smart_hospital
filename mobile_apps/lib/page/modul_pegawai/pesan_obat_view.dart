@@ -7,18 +7,18 @@ import 'package:smart_hospital/util/util.dart';
 class PesanObatViewPage extends StatefulWidget {
   final PesanObat pesanObat;
 
-  PesanObatViewPage({required this.pesanObat});
+  PesanObatViewPage({this.pesanObat});
 
   @override
   _PesanObatViewPageState createState() => _PesanObatViewPageState();
 }
 
 class _PesanObatViewPageState extends State<PesanObatViewPage> {
-  late LatLng alamatLatLng;
+  LatLng alamatLatLng;
 
   Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
-  late CameraPosition _currentPosition; // Location set is Danau Raja, Rengat
+  static CameraPosition _currentPosition; // Location set is Danau Raja, Rengat
 
   @override
   void initState() {
@@ -51,11 +51,11 @@ class _PesanObatViewPageState extends State<PesanObatViewPage> {
                       ], rows: [
                         DataRow(cells: [
                           DataCell(Text('Nama Pemesan')),
-                          DataCell(Text(widget.pesanObat.idPasien?.nama ?? '-'))
+                          DataCell(Text(widget.pesanObat.idPasien.nama))
                         ]),
                         DataRow(cells: [
                           DataCell(Text('Telfon')),
-                          DataCell(Text(widget.pesanObat.idPasien?.hp ?? '-'))
+                          DataCell(Text(widget.pesanObat.idPasien.hp))
                         ]),
                         DataRow(cells: [
                           DataCell(Text('Alamat')),
@@ -67,7 +67,7 @@ class _PesanObatViewPageState extends State<PesanObatViewPage> {
                         ]),
                         DataRow(cells: [
                           DataCell(Text('Waktu')),
-                          DataCell(Text(widget.pesanObat.waktu ?? '-'))
+                          DataCell(Text(widget.pesanObat.waktu))
                         ]),
                         DataRow(cells: [
                           DataCell(Text('Catatan')),

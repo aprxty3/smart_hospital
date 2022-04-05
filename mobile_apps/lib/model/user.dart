@@ -6,15 +6,10 @@ import 'package:smart_hospital/util/config.dart';
 import 'package:http/http.dart' as http;
 
 class User {
-  final String username, password;
-  final String? idUser;
-  final Pasien? idPasien;
+  final String idUser, username, password;
+  final Pasien idPasien;
 
-  User(
-      {this.idUser,
-      required this.username,
-      required this.password,
-      this.idPasien});
+  User({this.idUser, this.username, this.password, this.idPasien});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -31,7 +26,7 @@ class User {
 Future<Response> login(User user) async {
   String route = AppConfig.API_ENDPOINT + "/login.php";
   try {
-    final response = await http.post(Uri.parse(route),
+    final response = await http.post(route,
         headers: {"Content-Type": "application/json"},
         body:
             jsonEncode({'username': user.username, 'password': user.password}));
@@ -41,6 +36,6 @@ Future<Response> login(User user) async {
     return response;
   } catch (e) {
     print("Error : ${e.toString()}");
-    throw Exception('Failed load $route');
+    return null;
   }
 }

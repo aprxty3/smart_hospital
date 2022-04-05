@@ -7,17 +7,16 @@ import 'pasien.dart';
 import 'dokter.dart';
 
 class RegisPoli {
-  final String tglBooking, poli;
-  final String? idRegisPoli;
+  final String idRegisPoli, tglBooking, poli;
   final Pasien idPasien;
   final Dokter idDokter;
 
   RegisPoli(
       {this.idRegisPoli,
-      required this.idPasien,
-      required this.idDokter,
-      required this.tglBooking,
-      required this.poli});
+      this.idPasien,
+      this.idDokter,
+      this.tglBooking,
+      this.poli});
 
   factory RegisPoli.fromJson(Map<String, dynamic> json) {
     return RegisPoli(
@@ -42,7 +41,7 @@ Future<List<RegisPoli>> fetchRegisPolis() async {
   String idPasien = prefs.getString(ID_PASIEN) ?? "";
   String route =
       AppConfig.API_ENDPOINT + "regis-poli/index.php?id_pasien=$idPasien";
-  final response = await http.get(Uri.parse(route));
+  final response = await http.get(route);
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
@@ -57,7 +56,7 @@ Future regisPoliCreate(RegisPoli regisPoli) async {
   final prefs = await SharedPreferences.getInstance();
   String route = AppConfig.API_ENDPOINT + "regis-poli/create.php";
   try {
-    final response = await http.post(Uri.parse(route),
+    final response = await http.post(route,
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           'id_pasien': prefs.getString(ID_PASIEN),
@@ -76,7 +75,7 @@ Future regisPoliCreate(RegisPoli regisPoli) async {
 // delete (GET)
 Future deleteRegisPoli(id) async {
   String route = AppConfig.API_ENDPOINT + "regis-poli/delete.php?id=$id";
-  final response = await http.get(Uri.parse(route));
+  final response = await http.get(route);
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);

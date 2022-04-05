@@ -17,10 +17,10 @@ class _CreatePageState extends State<CreatePage> {
   LatLng alamatLatLng = LatLng(0.500359, 101.419844);
   int totalBiaya = 0;
 
-  List<Obat> obats = [];
+  List<Obat> obats = List<Obat>();
   Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
-  late CameraPosition _currentPosition; // Location set is Danau Raja, Rengat
+  static CameraPosition _currentPosition; // Location set is Danau Raja, Rengat
 
   @override
   void initState() {
@@ -141,7 +141,7 @@ class _CreatePageState extends State<CreatePage> {
                                 obats[obats.indexOf(obat)].jumlah.toString(),
                             decoration: InputDecoration(hintText: 'Jumlah'),
                             validator: (value) {
-                              if (value != null && value.isEmpty) {
+                              if (value.isEmpty) {
                                 return 'Tidak boleh kosong';
                               }
                               return null;
@@ -155,9 +155,9 @@ class _CreatePageState extends State<CreatePage> {
                             },
                           ),
                         )),
-                    onChanged: (bool? val) {
+                    onChanged: (bool val) {
                       setState(() {
-                        obats[obats.indexOf(obat)].isSelected = val!;
+                        obats[obats.indexOf(obat)].isSelected = val;
                         if (!val) {
                           setState(() {
                             obats[obats.indexOf(obat)].jumlah = 1;
@@ -179,7 +179,7 @@ class _CreatePageState extends State<CreatePage> {
   }
 
   bool _isFormValid() {
-    List<String> message = [];
+    List<String> message = List<String>();
     if (alamatCont.text.isEmpty) {
       message.add("Alamat belum diisi");
     }
@@ -213,7 +213,7 @@ class _CreatePageState extends State<CreatePage> {
       decoration:
           InputDecoration(icon: Icon(Icons.store), hintText: 'Alamat Lengkap'),
       validator: (value) {
-        if (value != null && value.isEmpty) {
+        if (value.isEmpty) {
           return 'Tidak boleh kosong';
         }
         return null;
@@ -228,7 +228,7 @@ class _CreatePageState extends State<CreatePage> {
       decoration:
           InputDecoration(icon: Icon(Icons.textsms), hintText: 'Keterangan'),
       validator: (value) {
-        if (value != null && value.isEmpty) {
+        if (value.isEmpty) {
           return 'Tidak boleh kosong';
         }
         return null;

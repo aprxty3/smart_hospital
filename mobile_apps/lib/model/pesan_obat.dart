@@ -6,24 +6,28 @@ import 'package:smart_hospital/util/session.dart';
 import 'pasien.dart';
 
 class PesanObat {
-  final String alamat, lat, lng, listPesanan, totalBiaya, ket;
+  final String idPesanObat,
+      waktu,
+      alamat,
+      lat,
+      lng,
+      listPesanan,
+      totalBiaya,
+      ket;
+  bool isSelesai;
 
-  bool? isSelesai;
-
-  final String? idPesanObat, waktu;
-
-  final Pasien? idPasien;
+  final Pasien idPasien;
 
   PesanObat(
       {this.idPesanObat,
       this.idPasien,
       this.waktu,
-      required this.alamat,
-      required this.lat,
-      required this.lng,
-      required this.listPesanan,
-      required this.totalBiaya,
-      required this.ket,
+      this.alamat,
+      this.lat,
+      this.lng,
+      this.listPesanan,
+      this.totalBiaya,
+      this.ket,
       this.isSelesai});
 
   factory PesanObat.fromJson(Map<String, dynamic> json) {
@@ -55,8 +59,7 @@ Future<List<PesanObat>> fetchPesanObats({isSelesai}) async {
   String idPasien = prefs.getString(ID_PASIEN) ?? "";
   String route = AppConfig.API_ENDPOINT +
       "pesan-obat/index.php?id_pasien=$idPasien&is_selesai=$isSelesai";
-
-  final response = await http.get(Uri.parse(route));
+  final response = await http.get(route);
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
@@ -71,7 +74,7 @@ Future pesanObatCreate(PesanObat pesanObat) async {
   final prefs = await SharedPreferences.getInstance();
   String route = AppConfig.API_ENDPOINT + "pesan-obat/create.php";
   try {
-    final response = await http.post(Uri.parse(route),
+    final response = await http.post(route,
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           'id_pasien': prefs.getString(ID_PASIEN),
@@ -93,7 +96,7 @@ Future pesanObatCreate(PesanObat pesanObat) async {
 // delete (GET)
 Future deletePesanObat(id) async {
   String route = AppConfig.API_ENDPOINT + "pesan-obat/delete.php?id=$id";
-  final response = await http.get(Uri.parse(route));
+  final response = await http.get(route);
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);
@@ -106,7 +109,7 @@ Future deletePesanObat(id) async {
 // update (GET)
 Future updatePesanObat(id) async {
   String route = AppConfig.API_ENDPOINT + "pesan-obat/update.php?id=$id";
-  final response = await http.get(Uri.parse(route));
+  final response = await http.get(route);
 
   if (response.statusCode == 200) {
     var jsonResp = json.decode(response.body);

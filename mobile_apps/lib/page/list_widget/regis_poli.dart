@@ -4,7 +4,7 @@ import 'package:smart_hospital/util/util.dart';
 
 class RegisPoliList extends StatefulWidget {
   final List<RegisPoli> regisPolis;
-  RegisPoliList({required this.regisPolis});
+  RegisPoliList({this.regisPolis});
 
   @override
   _RegisPoliListState createState() => _RegisPoliListState();
@@ -15,7 +15,8 @@ class _RegisPoliListState extends State<RegisPoliList> {
   Widget build(BuildContext context) {
     return (widget.regisPolis.length != 0)
         ? ListView.builder(
-            itemCount: (widget.regisPolis.length),
+            itemCount:
+                (widget.regisPolis == null ? 0 : widget.regisPolis.length),
             itemBuilder: (context, i) {
               return Container(
                 child: GestureDetector(
@@ -34,7 +35,7 @@ class _RegisPoliListState extends State<RegisPoliList> {
                         ),
                         ButtonBar(
                           children: <Widget>[
-                            TextButton(
+                            FlatButton(
                                 onPressed: () async {
                                   final result = await deleteRegisPoli(
                                       widget.regisPolis[i].idRegisPoli);

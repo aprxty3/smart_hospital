@@ -12,9 +12,9 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  late Dokter _selectedDokter;
-  late Future<List<Dokter>> dokters;
-  late String? _selectedPoli;
+  Dokter _selectedDokter;
+  Future<List<Dokter>> dokters;
+  String _selectedPoli;
   TextEditingController _tglBookCont = new TextEditingController();
   List<String> polis = ["Poli Umum", "Poli Anak", "Poli Gigi", "Poli Syaraf"];
 
@@ -53,7 +53,7 @@ class _CreatePageState extends State<CreatePage> {
         idPasien: Pasien(idPasien: "5"),
         idDokter: _selectedDokter,
         tglBooking: _tglBookCont.text,
-        poli: _selectedPoli!);
+        poli: _selectedPoli);
 
     if (_selectedPoli == null) {
       print("Poli belum dipilih");
@@ -80,13 +80,13 @@ class _CreatePageState extends State<CreatePage> {
             return DropdownButtonFormField(
               hint: Text("Pilih Dokter"),
               items:
-                  snapshot.data!.map<DropdownMenuItem<Dokter>>((Dokter value) {
+                  snapshot.data.map<DropdownMenuItem<Dokter>>((Dokter value) {
                 return DropdownMenuItem<Dokter>(
                     value: value, child: Text(value.nama));
               }).toList(),
-              onChanged: (Dokter? value) {
+              onChanged: (Dokter value) {
                 setState(() {
-                  _selectedDokter = value!;
+                  _selectedDokter = value;
                 });
               },
             );
@@ -107,7 +107,7 @@ class _CreatePageState extends State<CreatePage> {
       ),
       onTap: () async {
         DateTime now = new DateTime.now();
-        final DateTime? picked = await showDatePicker(
+        final DateTime picked = await showDatePicker(
             context: context,
             initialDate: now,
             firstDate: DateTime(2015, 8),
@@ -130,9 +130,9 @@ class _CreatePageState extends State<CreatePage> {
       items: polis.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(value: value, child: Text(value));
       }).toList(),
-      onChanged: (String? value) {
+      onChanged: (String value) {
         setState(() {
-          _selectedPoli = value!;
+          _selectedPoli = value;
         });
       },
     );

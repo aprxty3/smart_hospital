@@ -4,7 +4,7 @@ import 'package:smart_hospital/util/config.dart';
 import 'package:http/http.dart' as http;
 
 class Pasien {
-  final String? idPasien, nama, hp, email;
+  final String idPasien, nama, hp, email;
 
   Pasien({this.idPasien, this.nama, this.hp, this.email});
 
@@ -28,7 +28,7 @@ List<Pasien> pasienFromJson(jsonData) {
 Future pasienCreate(Pasien pasien) async {
   String route = AppConfig.API_ENDPOINT + "/pasien/create.php";
   try {
-    final response = await http.post((Uri.parse(route)),
+    final response = await http.post(route,
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(
             {'nama': pasien.nama, 'hp': pasien.hp, 'email': pasien.email}));

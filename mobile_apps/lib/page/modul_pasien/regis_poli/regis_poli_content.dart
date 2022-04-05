@@ -13,7 +13,7 @@ class RegisPoliContent extends StatefulWidget {
 }
 
 class _RegisPoliContentState extends State<RegisPoliContent> {
-  late Future<List<RegisPoli>> regisPolis;
+  Future<List<RegisPoli>> regisPolis;
 
   @override
   void initState() {
@@ -45,8 +45,7 @@ class _RegisPoliContentState extends State<RegisPoliContent> {
               if (snapshot.hasError) {
                 result = Text('${snapshot.error}');
               } else if (snapshot.hasData) {
-                result =
-                    RegisPoliList(regisPolis: snapshot.data as List<RegisPoli>);
+                result = RegisPoliList(regisPolis: snapshot.data);
               } else {
                 result = CircularProgressIndicator();
               }

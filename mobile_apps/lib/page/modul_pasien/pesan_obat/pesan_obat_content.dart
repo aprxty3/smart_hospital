@@ -13,7 +13,7 @@ class PesanObatContent extends StatefulWidget {
 }
 
 class _PesanObatContentState extends State<PesanObatContent> {
-  late Future<List<PesanObat>> pesanObats;
+  Future<List<PesanObat>> pesanObats;
 
   @override
   void initState() {
@@ -46,8 +46,7 @@ class _PesanObatContentState extends State<PesanObatContent> {
               if (snapshot.hasError) {
                 result = Text('${snapshot.error}');
               } else if (snapshot.hasData) {
-                result =
-                    PesanObatList(pesanObats: snapshot.data as List<PesanObat>);
+                result = PesanObatList(pesanObats: snapshot.data);
               } else {
                 result = CircularProgressIndicator();
               }

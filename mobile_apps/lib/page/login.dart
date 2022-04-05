@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                   icon: Icon(Icons.person), hintText: 'Username'),
               validator: (value) {
-                if (value != null && value.isEmpty) {
+                if (value.isEmpty) {
                   return 'Tidak boleh kosong';
                 }
                 return null;
@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: InputDecoration(
                   icon: Icon(Icons.vpn_key), hintText: 'Password'),
               validator: (value) {
-                if (value != null && value.isEmpty) {
+                if (value.isEmpty) {
                   return 'Tidak boleh kosong';
                 }
                 return null;
@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: largetButton(
                     label: 'LOGIN',
                     iconData: Icons.subdirectory_arrow_right,
-                    onPressed: () => (_formKey.currentState!.validate())
+                    onPressed: () => (_formKey.currentState.validate())
                         ? prosesLogin()
                         : null)),
             SizedBox(height: 20),
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
         User user = User.fromJson(jsonResp['user']);
         if (user.idPasien != null) {
           // direct to home pasien
-          createPasienSession(user.idPasien!);
+          createPasienSession(user.idPasien);
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => IndexPasien.IndexPage()));
         } else {

@@ -4,7 +4,7 @@ import 'package:smart_hospital/util/util.dart';
 
 class PesanObatList extends StatefulWidget {
   final List<PesanObat> pesanObats;
-  PesanObatList({required this.pesanObats});
+  PesanObatList({this.pesanObats});
 
   @override
   _PesanObatListState createState() => _PesanObatListState();
@@ -15,7 +15,8 @@ class _PesanObatListState extends State<PesanObatList> {
   Widget build(BuildContext context) {
     return (widget.pesanObats.length != 0)
         ? ListView.builder(
-            itemCount: (widget.pesanObats.length),
+            itemCount:
+                (widget.pesanObats == null ? 0 : widget.pesanObats.length),
             itemBuilder: (context, i) {
               return Container(
                 child: GestureDetector(
@@ -37,8 +38,8 @@ class _PesanObatListState extends State<PesanObatList> {
                         ButtonBar(
                           children: <Widget>[
                             Visibility(
-                              visible: widget.pesanObats[i].isSelesai ?? false,
-                              child: TextButton(
+                              visible: !widget.pesanObats[i].isSelesai,
+                              child: FlatButton(
                                   onPressed: () async {
                                     final result = await deletePesanObat(
                                         widget.pesanObats[i].idPesanObat);
