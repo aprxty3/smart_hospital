@@ -34,8 +34,13 @@ class _IndexPageState extends State<IndexPage> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.assignment), title: Text('Regis Poli')),
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+            icon: Icon(Icons.assignment),
+            title: Text('Regis Poli'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
           BottomNavigationBarItem(
               icon: Icon(Icons.local_hospital), title: Text('Pesan Obat')),
         ],
